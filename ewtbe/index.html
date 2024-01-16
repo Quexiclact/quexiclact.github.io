@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>EWTBE</title>
+  <script type="text/javascript" src="pointstracker.js"></script>
+</head>
+<body class="light" id="work">
+  <script type="text/javascript">
+    function toggleTheme() {
+      document.getElementById("work").classList.toggle("light");
+      document.getElementById("work").classList.toggle("reversi");
+    }
+  </script>
+
+  <button onclick='toggleTheme()'>Click here to swap themes (only default and reversi, sorry)</button>
+  
+  <div id="intro">
+    <p>Izuku stands opposite Bakugou.</p>
+    
+    <p>"He won't die if he dodges!" shouts Bakugou.</p>
+    
+    <p>What should Izuku do?</p>
+  </div>
+  
+  <hr class="hidden" />
+  
+  <div id=part1>
+    <button id="choice1-1" onclick="addPoints('XX',0);buttonSet('choice1',1,2);progress()">Dodge</button>
+    
+    <div id ="choice1-1chosen" class="hidden"><p>Izuku gets out of the way just in time.</p></div>
+    
+    <hr class="hidden" />
+    
+    <button id="choice1-2" onclick="addPoints('MI',1);buttonSet('choice1',2,2);progress()">Die</button>
+    
+    <div id="choice1-2chosen" class="hidden"><p>Several terrible things happen in the same moment.</p></div>
+  </div>
+  
+  <hr class="hidden" />
+  
+  <div id="end" class="hidden">
+    <button id='playAgain' onclick='location.reload()'>Click here to play again</button>
+    <p></p>
+    <button onclick='revealAll()'>For completionists, this button reveals all text</button>
+  </div>
+  
+</body>
+</html>
