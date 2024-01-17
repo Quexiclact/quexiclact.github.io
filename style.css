@@ -100,7 +100,7 @@ button {
 	margin-bottom: 0em;
 }
 
-/* // these are a bunch of button mockups for tags other than <button>
+/* // these are a bunch of button mockups using tags other than <button>
 // no longer needed because the buttons themselves can be made inert with "pointer-events: none;"
 
 .light .button-clicked {
