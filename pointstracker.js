@@ -1,10 +1,17 @@
 const expulsionPoints = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 // tracks points towards expulsion for all expellable students
+const maxPointsSceneComplete = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+// tracks whether each student has had their max points scene
 
 var minetaGone = false; // determines if Mineta is still around
-
 var shinsouIntroduced = true; // determines if Shinsou has been introduced
-var part = "intro";
+
+const maxPointsText = []; // TODO: add variables with html text for all max points scenes, to be appended where appropriate.
+
+/*
+TODO: create function which uses el.innerHTML = el.innerHTML + maxPointsText to append scenes
+Use a loop, so it can be if (expulsionPoints[i] == (max) && maxPointsSceneComplete[i] == false) {append}
+*/
 
 /*
 adds points to a given student's total.
@@ -12,121 +19,57 @@ adds points to a given student's total.
 @param 	student 	initials of the student gaining points, nonexistent initials make it do nothing
 @param 	points 		number of points to add
 */
-function addPoints(student, points) { 
-    switch(student) {
-      case "AY":
-        expulsionPoints[0] += points;
-        break;
-      case "AM":
-        expulsionPoints[1] += points;
-        break;
-      case "AT":
-        expulsionPoints[2] += points;
-        break;
-      case "IT":
-        expulsionPoints[3] += points;
-        break;
-      case "UO":
-        expulsionPoints[4] += points;
-        break;
-      case "OM":
-        expulsionPoints[5] += points;
-        break;
-      case "KD":
-        expulsionPoints[6] += points;
-        break;
-      case "KE":
-        expulsionPoints[7] += points;
-        break;
-      case "KK":
-        expulsionPoints[8] += points;
-        break;
-      case "SR":
-        expulsionPoints[9] += points;
-        break;
-      case "SHi":
-        expulsionPoints[10] += points;
-        break;
-      case "SM":
-        expulsionPoints[11] += points;
-        break;
-      case "JK":
-        expulsionPoints[12] += points;
-        break;
-      case "SHa":
-        expulsionPoints[13] += points;
-        break;
-      case "TF":
-        expulsionPoints[14] += points;
-        break;
-      case "TS":
-        expulsionPoints[15] += points;
-        break;
-      case "HT":
-        expulsionPoints[16] += points;
-        break;
-      case "BK":
-        expulsionPoints[17] += points;
-        break;
-      case "MI":
-        expulsionPoints[18] += points;
-        break;
-      case "YM":
-        expulsionPoints[19] += points;
-        break;
-      default:
-        break;
+function addPoints(studentIndex, points) {
+    expulsionPoints[studentIndex] += points;
+}
+
+/*
+hides buttons not clicked and makes button clicked inert, then reveals the next portion of the story.
+
+@param 	choiceId 		identifies which set of buttons the user is at
+@param 	numberChosen 	identifies which button the user clicked
+*/
+function progress(choiceId, numChosen) {
+	var currChoiceButtons = document.getElementsByClassName(choiceId); // array of buttons for current choice
+	
+	// iterates through array of buttons, either hiding them or making them inert depending on whether they are the one that was clicked
+	for (i = 0; i < currChoiceButtons.length; i++) {
+	  	if (currChoiceButtons[i].classList.contains("button" + numChosen)) {
+		  	currChoiceButtons[i].classList.toggle("inert");
+	  	}
+	  	else {
+		  	currChoiceButtons[i].classList.toggle("hidden");
+	  	}
+	}
+	
+	// reveals text related to the choice made
+	document.getElementById(choiceId + "-" + numChosen).classList.toggle("hidden");
+	
+	// reveals text regardless of choice, different text depending on where in the story the reader is
+  	switch(choiceId) {
+    	case "choice1":
+      		document.getElementById('end').classList.toggle("hidden");
+      		break;
+    	default:
+      		break;
     }
 }
 
 /*
-reveals the next portion of the story.
-*/
-function progress() {
-  switch(part) {
-    case "intro":
-      if (expulsionPoints[18] > 0) {
-        document.getElementById('choice1-2chosen').classList.toggle("hidden");
-      }
-      else {
-        document.getElementById('choice1-1chosen').classList.toggle("hidden");
-      }
-      document.getElementById('end').classList.toggle("hidden");
-      part = "part1";
-      break;
-    default:
-      break;
-  }
-}
-
-/*
-hides buttons not clicked and makes button clicked inert.
-
-@param 	choiceId 		identifies which set of buttons the user is at
-@param 	numberChosen 	identifies which button the user clicked
-@param 	numChoices		number of buttons in set
-*/
-function buttonSet(choiceId, numberChosen, numChoices) {
-	for (var i = 1; i <= numChoices; i++) {
-	  if (i != numberChosen) {
-		  document.getElementById(choiceId + "-" + i).classList.toggle("hidden");
-	  }
-	}
-	var chosen = document.getElementById(choiceId + "-" + numberChosen);
-	chosen.classList.toggle("inert");
-}
-
-/*
-reveals all hidden elements and makes all choice buttons inert.
+reveals all hidden elements and makes all choice buttons inert
 */
 function revealAll() {
-	var allHidden = document.querySelectorAll(".hidden"); //array of all elements with "hidden" class
+	var allHidden = document.querySelectorAll(".hidden"); // array of all elements with "hidden" class
+	
+	// iterates through array, revealing all
 	for (i = 0; i < allHidden.length; i++) {
-		allHidden[i].classList.toggle("hidden");
+		allHidden[i].classList.toggle("hidden")
 	}
-	var allButtons = document.querySelectorAll("button"); //array of all buttons
+	var allButtons = document.querySelectorAll("button"); // array of all buttons
+	
+	// iterates through array, making them inert only if they are not the play again or toggle theme buttons
 	for (i = 1; i < allButtons.length; i++) {
-		if (allButtons[i].id == "playAgain") {
+		if (allButtons[i].id == "playAgain" || allButtons[i].id == "toggleTheme") {
 			continue;
 		}
 		if (!(allButtons[i].classList.contains("inert"))) {
