@@ -13,7 +13,7 @@
     }
   </script>
 
-  <button onclick='toggleTheme()'>Click here to swap themes (only default and reversi, sorry)</button>
+  <button id="toggleTheme" onclick='toggleTheme()'>Click here to swap themes (only default and reversi, sorry)</button>
   
   <div id="intro">
     <p>Izuku stands opposite Bakugou.</p>
@@ -26,15 +26,15 @@
   <hr class="hidden" />
   
   <div id=part1>
-    <button id="choice1-1" onclick="addPoints('XX',0);buttonSet('choice1',1,2);progress()">Dodge</button>
+    <button class="choice1 button1" onclick="progress('choice1', 1)">Dodge</button>
     
-    <div id ="choice1-1chosen" class="hidden"><p>Izuku gets out of the way just in time.</p></div>
+    <div id ="choice1-1" class="hidden"><p>Izuku gets out of the way just in time.</p></div>
     
     <hr class="hidden" />
     
-    <button id="choice1-2" onclick="addPoints('MI',1);buttonSet('choice1',2,2);progress()">Die</button>
+    <button class="choice1 button2" onclick="addPoints(18,1);progress('choice1', 2)">Die</button>
     
-    <div id="choice1-2chosen" class="hidden"><p>Several terrible things happen in the same moment.</p></div>
+    <div id="choice1-2" class="hidden"><p>Several terrible things happen in the same moment.</p></div>
   </div>
   
   <hr class="hidden" />
