@@ -1,5 +1,8 @@
 body {
-  font-family: 'Lucida Grande','Lucida Sans Unicode','GNU Unifont', Verdana, Helvetica, sans-serif;  
+  font-family: 'Lucida Grande','Lucida Sans Unicode','GNU Unifont', Verdana, Helvetica, sans-serif;
+  padding: 0.5em;
+  max-width: 72em;
+  margin: 0 auto;
 }
 
 button {
@@ -15,6 +18,8 @@ button {
   text-decoration: none;
   border-radius: .25em;
   font-family: 'Lucida Grande','Lucida Sans Unicode','GNU Unifont', Verdana, Helvetica, sans-serif;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .light button.inert {
