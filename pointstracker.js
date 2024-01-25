@@ -1,16 +1,20 @@
-const expulsionPoints = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 // tracks points towards expulsion for all expellable students
-const maxPointsSceneComplete = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
-// tracks whether each student has had their max points scene
+const expulsionPoints = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-var minetaGone = false; // determines if Mineta is still around
-var shinsouIntroduced = false; // determines if Shinsou has been introduced
+// determines if Mineta is still around
+var minetaGone = false;
 
+// determines if Shinsou has been introduced
+var shinsouIntroduced = false;
+
+//number of students
 const NUM_STUDENTS = 20;
 
+// maximum number of points able to be achieved
 const MAX_POINTS = 1; // TODO: change once you figure out what you want the value to be
-const PRIORITY_LIST = [0, 3, 11, 19, 4, 16, 12, 14, 6, 7, 1, 8, 2, 5, 9, 13, 15, 10, 18, 17];
+
 // priority for expulsions, from least likely to be expelled to most
+const PRIORITY_LIST = [0, 3, 11, 19, 4, 16, 12, 14, 6, 7, 1, 8, 2, 5, 9, 13, 15, 10, 18, 17];
 
 /**
  * checks if max points have been achieved and appends max points scenes to element with id placeId
@@ -20,23 +24,15 @@ const PRIORITY_LIST = [0, 3, 11, 19, 4, 16, 12, 14, 6, 7, 1, 8, 2, 5, 9, 13, 15,
 function appendMaxPointsText(placeId) {
 	for (let i = 0; i < NUM_STUDENTS; i++) {
 		
-		// checks if each student has max points and has yet to complete max points scene
-		if (expulsionPoints[i] >= MAX_POINTS && !maxPointsSceneComplete[i]) {
+		// checks if each student has max points and appends scene if so, deleting the scene from storage afterwards
+		if (expulsionPoints[i] >= MAX_POINTS) {
 			// appends scene (scene text contained in element with id '"maxPointsScene" + i')
 			document.getElementById(placeId).innerHTML += document.getElementById("maxPointsScene" + i).innerHTML;
 			// removes scene text from container (div id '"maxPointsScene" + i')
 			document.getElementById("maxPointsScene" + i).innerHTML = "";
-			// marks scene completed so it won't be appended again
-			maxPointsSceneComplete[i] = true;
 		}
 	}
 }
-
-/**
- * TODO: make a method similar to appendMaxPointsText for the Shinsou introduction scene
- * except it probably can just replace the text rather than append, because there is only one Shinsou introduction
- */
-
 
 /**
  * toggles theme from default to reversi and back
@@ -66,7 +62,10 @@ function addPoints(studentIndex, points) {
 function progress(choiceId, numChosen) {
 	var currChoiceButtons = document.getElementsByClassName(choiceId); // array of buttons for current choice
 	
-	// iterates through array of buttons, either hiding them or making them inert depending on whether they are the one that was clicked
+	/*
+	* iterates through array of buttons, either hiding them or making them inert depending on
+	* whether they are the one that was clicked
+	*/
 	for (i = 0; i < currChoiceButtons.length; i++) {
 	  	if (currChoiceButtons[i].classList.contains("button" + numChosen)) {
 		  	currChoiceButtons[i].classList.toggle("inert");
@@ -103,9 +102,12 @@ function revealAll() {
 	
 	var allButtons = document.querySelectorAll("button"); // array of all buttons
 	
-	// iterates through array, making them inert only if they are not the play again or toggle theme buttons (which will still be clickable)
+	/* 
+	* iterates through array, making them inert only if they are not the play again or toggle 
+	* theme buttons (which will still be clickable)
+	*/
 	for (i = 0; i < allButtons.length; i++) {
-		if (allButtons[i].id == "playAgain" || allButtons[i].id == "toggleTheme") {
+		if (allButtons[i].classList.contains("dontDisable")) {
 			continue;
 		}
 		if (!(allButtons[i].classList.contains("inert"))) {
@@ -167,10 +169,14 @@ function chooseExpellees() {
 		expelledArray.push(20);
 	}
 	
-	// adds [BAD END] to all where Shinsou gets expelled, [WORST END] if Shinsou, Bakugou, Aoyama, Todoroki, and either Ashido or Kirishima expelled
+	/*
+	* adds [BAD END] to all where Shinsou gets expelled, [WORST END] if Shinsou, Bakugou, Aoyama,
+	* Todoroki, and either Ashido or Kirishima expelled
+	*/
 	if (expelledArray.includes(0)) {
 		if (expelledArray.includes(1) && expelledArray.includes(15) && expelledArray.includes(17) &&
-		(expelledArray.includes(2) || expelledArray.includes(8)) && ((!expelledArray.includes(2)) || (!expelledArray.includes(8)))) {
+		(expelledArray.includes(2) || expelledArray.includes(8)) && ((!expelledArray.includes(2))
+				|| (!expelledArray.includes(8)))) {
 			expelledArray.push(24);
 		}
 		else {

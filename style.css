@@ -3,6 +3,7 @@ body {
   padding: 0.5em;
   max-width: 72em;
   margin: 0 auto;
+  font-size: 100%;
 }
 
 button {
@@ -20,6 +21,7 @@ button {
   font-family: 'Lucida Grande','Lucida Sans Unicode','GNU Unifont', Verdana, Helvetica, sans-serif;
   word-wrap: break-word;
   white-space: normal;
+  margin-top: .25em;
 }
 
 .light button.inert {
@@ -83,6 +85,9 @@ button {
   display: none;
 }
 
+/* // these are for button mockups using tags other than <button>
+// no longer needed because the buttons themselves can be made inert with "pointer-events: none;"
+
 .ib-display {
   display: inline-block;
 }
@@ -104,9 +109,6 @@ button {
 	margin-top: 0em;
 	margin-bottom: 0em;
 }
-
-/* // these are a bunch of button mockups using tags other than <button>
-// no longer needed because the buttons themselves can be made inert with "pointer-events: none;"
 
 .light .button-clicked {
   width: auto;

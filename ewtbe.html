@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>EWTBE</title>
+  <script type="text/javascript" src="pointstracker.js"></script>
+</head>
+<body class="light" id="work">
+
+  <button onclick=''>TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON</button>
+  
+  <button class="dontDisable" onclick='toggleTheme()'>Click here to swap themes (only default and reversi, sorry)</button>
+  
+  <div id="intro">
+    <p>Izuku stands opposite Bakugou.</p>
+    
+    <p>"He won't die if he dodges!" shouts Bakugou.</p>
+    
+    <p>What should Izuku do?</p>
+  </div>
+  
+  <hr class="hidden" />
+  
+  <div id=part1>
+    <button class="choice1 button1" onclick="progress('choice1', 1)">Dodge</button>
+    
+    <div id ="choice1-1" class="hidden"><p>Izuku gets out of the way just in time.</p></div>
+    
+    <hr class="hidden" />
+    
+    <button class="choice1 button2" onclick="addPoints(18,1);progress('choice1', 2)">Die</button>
+    
+    <div id="choice1-2" class="hidden"><p>Several terrible things happen in the same moment.</p></div>
+  </div>
+  
+  <div id="part1MaxPointsScenes"></div>
+  
+  <hr class="hidden" />
+  
+  <div id="end" class="hidden">
+    <button class="dontDisable" onclick='location.reload()'>Click here to play again</button>
+    <p></p>
+    <button onclick='revealAll()'>For completionists, this button reveals all text</button>
+  </div>
+  
+  <div id="endMaxPointsScenes" class="hidden">
+  <p>The following scenes can show up at several points throughout the text:</p>
+  
+  <div id="maxPointsScene0"><p>-</p></div>
+  <div id="maxPointsScene1"><p>-</p></div>
+  <div id="maxPointsScene2"><p>-</p></div>
+  <div id="maxPointsScene3"><p>-</p></div>
+  <div id="maxPointsScene4"><p>-</p></div>
+  <div id="maxPointsScene5"><p>-</p></div>
+  <div id="maxPointsScene6"><p>-</p></div>
+  <div id="maxPointsScene7"><p>-</p></div>
+  <div id="maxPointsScene8"><p>-</p></div>
+  <div id="maxPointsScene9"><p>-</p></div>
+  <div id="maxPointsScene10"><p>-</p></div>
+  <div id="maxPointsScene11"><p>-</p></div>
+  <div id="maxPointsScene12"><p>-</p></div>
+  <div id="maxPointsScene13"><p>-</p></div>
+  <div id="maxPointsScene14"><p>-</p></div>
+  <div id="maxPointsScene15"><p>-</p></div>
+  <div id="maxPointsScene16"><p>-</p></div>
+  <div id="maxPointsScene17"><p>-</p></div>
+  <div id="maxPointsScene18"><p>-</p><p>"Midoriya, stop that," says Aizawa.</p></div>
+  <div id="maxPointsScene19"><p>-</p></div>
+  </div>
+  
+</body>
+</html>
