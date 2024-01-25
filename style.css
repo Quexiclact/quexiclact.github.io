@@ -6,6 +6,10 @@ body {
   font-size: 100%;
 }
 
+h1 {
+  font-weight: normal;
+}
+
 button {
   width: auto;
   font-size: 100%;
