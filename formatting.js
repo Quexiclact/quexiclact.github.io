@@ -7,8 +7,8 @@ window.onload = function(){
         document.getElementById("work").classList.add("reversi");
     }
     else {
-		document.getElementById("work").classList.add("light");
-	}
+	document.getElementById("work").classList.add("light");
+    }
 };
 
 /**
