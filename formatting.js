@@ -1,7 +1,7 @@
 /**
  * Sets theme based on preference
  */
-document.addEventListener("DOMContentLoaded", function(arg) {
+document.addEventListener("DOMContentLoaded", function() {
     const prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
     if (prefersDarkTheme.matches) {
         document.getElementById("work").classList.add("reversi");
@@ -17,4 +17,4 @@ document.addEventListener("DOMContentLoaded", function(arg) {
 function toggleTheme() {
     document.getElementById("work").classList.toggle("light");
     document.getElementById("work").classList.toggle("reversi");
-    }
+}

@@ -89,6 +89,10 @@ button {
   display: none;
 }
 
+.unchosen {
+  display: none;
+}
+
 /* // these are for button mockups using tags other than <button>
 // no longer needed because the buttons themselves can be made inert with "pointer-events: none;"
 
