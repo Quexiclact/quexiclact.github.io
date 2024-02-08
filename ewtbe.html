@@ -1,72 +1,272 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="style.css">
-  <title>EWTBE</title>
-  <script type="text/javascript" src="pointstracker.js"></script>
+   <link rel="stylesheet" href="style.css">
+   <title>EWTBE</title>
+   <script type="text/javascript" src="pointstracker.js"></script>
+   <script type="text/javascript" src="formatting.js"></script>
 </head>
-<body class="light" id="work">
+<body id="work">
 
-  <button onclick=''>TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON TEST BUTTON</button>
+	<button class="dontDisable" onclick='toggleTheme()'>Click here to swap themes (only default and reversi, sorry)</button><br />
+	
+	<button onclick='revealAll()'>For completionists, this button reveals all text</button>
   
-  <button class="dontDisable" onclick='toggleTheme()'>Click here to swap themes (only default and reversi, sorry)</button>
+  	<hr class="hidden" />
   
-  <div id="intro">
-    <p>Izuku stands opposite Bakugou.</p>
+  	<div class="part1">
+  	
+  		<p>Izuku stands opposite Bakugou.</p>
     
-    <p>"He won't die if he dodges!" shouts Bakugou.</p>
+     	<p>"He won't die if he dodges!" shouts Bakugou.</p>
     
-    <p>What should Izuku do?</p>
-  </div>
-  
-  <hr class="hidden" />
-  
-  <div id=part1>
-    <button class="choice1 button1" onclick="progress('choice1', 1)">Dodge</button>
+     	<p>What should Izuku do?</p>
+     	
+    	<button class="choice1 button1" onclick="progress('choice1', 1)">Dodge</button>
     
-    <div id ="choice1-1" class="hidden"><p>Izuku gets out of the way just in time.</p></div>
+    	<div class="choice1-1 unchosen">
+      		<p>Izuku gets out of the way just in time.</p>
+    	</div>
+    
+   		<hr class="hidden" />
+    
+    	<button class="choice1 button2" onclick="addPoints(18,1);progress('choice1', 2)">Die</button>
+    
+    	<div class="choice1-2 unchosen">
+      		<p>Several terrible things happen in the same moment.</p>
+    	</div>
+  	</div>
+  
+  	<hr class="hidden" />
+  	
+  	<div class="part2 hidden">
+  		<div class="maxPointsScenes"></div>
+  	
+  		<p>In the chaos, Izuku sees the opportunity to push Mineta into the void.</p>
+  		
+  		<p>Should he do it?</p>
+  		
+  		<hr class="hidden" />
+  	
+    	<button class="choice2 button1" onclick="destroyMineta(0,'part3',0);addPoints(18,1);progress('choice2', 1)">YES!!!</button>
+    
+    	<div class="choice2-1 unchosen">
+      		<p>"Nooooooooo!" shouts Mineta as he falls into the void.</p>
+    	</div>
+    
+   		<hr class="hidden" />
+    
+    	<button class="choice2 button2" onclick="progress('choice2', 2)">no</button>
+    
+    	<div class="choice2-2 unchosen">
+      		<p>Izuku permits Mineta to live another day.</p>
+    	</div>
+  	</div>
+  	
+  	<hr class="hidden" />
+  
+  	<div class="part3 hidden">
+    	<div class="maxPointsScenes"></div>
+    	
+    	<p>The class ends.</p>
+    	
+    	<p>-</p>
+    	
+    	<p>The next day of class comes.</p>
+    	
+    	<div class="shinsouIntroduction unchosen"><hr class="hidden" /></div>
+    	
+    	<hr class="hidden" />
+    	
+    	<div class="minetaScene 0">
+    		<p>Mineta whines about something or other</p>
+    		
+    		<p>Yaoyorozu is so done with it she wants to kick him out the window.</p>
+    		
+    		<p>Does she?</p>
+    		
+    		<hr class="hidden" />
+  	
+	    	<button class="choice3 button1" onclick="destroyMineta(1,'end',1);addPoints(19,1);progress('choice3', 1)">With prejudice</button>
+	    
+	    	<div class="choice3-1 unchosen">
+	      		<p>Mineta falls like one story and is never seen again.</p>
+	    	</div>
+	    
+	   		<hr class="hidden" />
+	    
+	    	<button class="choice3 button2" onclick="progress('choice3', 2)">No she doesn't</button>
+	    
+	    	<div class="choice3-2 unchosen">
+	      		<p>Mineta continues with his whining, but Yaoyorozu chooses to ignore him.</p>
+	    	</div>
+    	</div>
+    	
+    	<hr class="hidden" />
+    	
+    	<div class="shinsouScene unchosen 0">
+    		<p>Everyone cheers so much because Shinsou is so cool.</p>
+    		
+    		<hr class="hidden" />
+	    
+	    	<button class="choice3 button3" onclick="progress('choice3', 3)">Continue</button>
+    	</div>
+  
+  	</div>
+  	
+  	<div class="end hidden">
+  		<div class="maxPointsScenes"></div>
+  		
+  		<div class="shinsouIntroduction unchosen"><hr class="hidden" /></div>
+  		
+  		<hr class="hidden" />
+  	
+  		<div class="minetaScene 1">
+  			<p>Mineta is.</p>
+  		</div>
+  		
+  		<hr class="hidden" />
+  		
+  		<div class="shinsouScene unchosen 1">
+  			<p>Mineta isn't.</p>
+  		</div>
+  		
+  		<hr class="hidden" />
+  		
+  		<p>"Expulsion time," says Aizawa.</p>
+  		
+  		<hr class="hidden" />
+  		
+  		<div id="expulsion18" class="unchosen">
+  			<p>"Midoriya, you're expelled."</p>
+  			
+  			<p>"Yes!"</p>
+  		</div>
+  		
+  		<hr class="hidden" />
+  		
+  		<div id="expulsion19" class="unchosen">
+  			<p>"Yaoyorozu, you're expelled."</p>
+  			
+  			<p>Yaoyorozu breathes a sigh of relief.</p>
+  		</div>
+  		
+  		<hr class="hidden" />
+  		
+  		<div id="expulsion21" class="unchosen">
+  			<p>"Nobody is expelled."</p>
+  			
+  			<p>"No, <em>you're</em> expelled!"</p>
+  			
+  			<p>[CRACK END]</p>
+  		</div>
+  		
+  		<hr class="hidden" />
+  		
+  		<div id="expulsion25" class="unchosen">
+  			<p>[END]</p>
+  		</div>
+  		
+  	</div>
+  	
+  	
+  	<div class="end hidden">
+  		<button class="dontDisable" onclick='location.reload()'>Click here to play again</button>
+    	<p></p>
+    	<button onclick='revealAll()'>For completionists, this button reveals all text</button>
+    </div>
     
     <hr class="hidden" />
+  
+  	<div id="sceneContainer" class="hidden">
+    	<p>The following scenes can show up at several points throughout the text:</p>
+  
+    	<div id="maxPointsScene0">
+      		<p>-</p>
+    	</div>
     
-    <button class="choice1 button2" onclick="addPoints(18,1);progress('choice1', 2)">Die</button>
+	    <div id="maxPointsScene1">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene2">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene3">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene4">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene5">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene6">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene7">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene8">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene9">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene10">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene11">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene12">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene13">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene14">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene15">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene16">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene17">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="maxPointsScene18">
+	      	<p>-</p>
+	      	<p>"Midoriya, no," says Aizawa.</p>
+	    </div>
+	    
+	    <div id="maxPointsScene19">
+	      	<p>-</p>
+	    </div>
+	    
+	    <div id="introduction0">
+	      	<p>"Here's Shinsou," says Aizawa.</p>
+	    </div>
     
-    <div id="choice1-2" class="hidden"><p>Several terrible things happen in the same moment.</p></div>
-  </div>
-  
-  <div id="part1MaxPointsScenes"></div>
-  
-  <hr class="hidden" />
-  
-  <div id="end" class="hidden">
-    <button class="dontDisable" onclick='location.reload()'>Click here to play again</button>
-    <p></p>
-    <button onclick='revealAll()'>For completionists, this button reveals all text</button>
-  </div>
-  
-  <div id="endMaxPointsScenes" class="hidden">
-  <p>The following scenes can show up at several points throughout the text:</p>
-  
-  <div id="maxPointsScene0"><p>-</p></div>
-  <div id="maxPointsScene1"><p>-</p></div>
-  <div id="maxPointsScene2"><p>-</p></div>
-  <div id="maxPointsScene3"><p>-</p></div>
-  <div id="maxPointsScene4"><p>-</p></div>
-  <div id="maxPointsScene5"><p>-</p></div>
-  <div id="maxPointsScene6"><p>-</p></div>
-  <div id="maxPointsScene7"><p>-</p></div>
-  <div id="maxPointsScene8"><p>-</p></div>
-  <div id="maxPointsScene9"><p>-</p></div>
-  <div id="maxPointsScene10"><p>-</p></div>
-  <div id="maxPointsScene11"><p>-</p></div>
-  <div id="maxPointsScene12"><p>-</p></div>
-  <div id="maxPointsScene13"><p>-</p></div>
-  <div id="maxPointsScene14"><p>-</p></div>
-  <div id="maxPointsScene15"><p>-</p></div>
-  <div id="maxPointsScene16"><p>-</p></div>
-  <div id="maxPointsScene17"><p>-</p></div>
-  <div id="maxPointsScene18"><p>-</p><p>"Midoriya, stop that," says Aizawa.</p></div>
-  <div id="maxPointsScene19"><p>-</p></div>
-  </div>
+  	</div>
   
 </body>
 </html>

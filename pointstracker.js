@@ -4,14 +4,11 @@ const expulsionPoints = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 // determines if Mineta is still around
 var minetaGone = false;
 
-// determines if Shinsou has been introduced
-var shinsouIntroduced = false;
-
 //number of students
 const NUM_STUDENTS = 20;
 
 // maximum number of points able to be achieved
-const MAX_POINTS = 1; // TODO: change once you figure out what you want the value to be
+const MAX_POINTS = 2; // TODO: change to five before done
 
 // priority for expulsions, from least likely to be expelled to most
 const PRIORITY_LIST = [0, 3, 11, 19, 4, 16, 12, 14, 6, 7, 1, 8, 2, 5, 9, 13, 15, 10, 18, 17];
@@ -19,15 +16,16 @@ const PRIORITY_LIST = [0, 3, 11, 19, 4, 16, 12, 14, 6, 7, 1, 8, 2, 5, 9, 13, 15,
 /**
  * checks if max points have been achieved and appends max points scenes to element with id placeId
  * 
- * @param	placeId	id of element to append scenes to
+ * @param	placeId	class of part to append scenes to
  */
-function appendMaxPointsText(placeId) {
+function appendMaxPointsText(placeClass) {
 	for (let i = 0; i < NUM_STUDENTS; i++) {
 		
 		// checks if each student has max points and appends scene if so, deleting the scene from storage afterwards
 		if (expulsionPoints[i] >= MAX_POINTS) {
-			// appends scene (scene text contained in element with id '"maxPointsScene" + i')
-			document.getElementById(placeId).innerHTML += document.getElementById("maxPointsScene" + i).innerHTML;
+			// appends scene (scene text contained in div with id '"maxPointsScene" + i')
+			let place = document.getElementsByClassName(placeClass)[0];
+			place.getElementsByClassName("maxPointsScenes")[0].innerHTML += document.getElementById("maxPointsScene" + i).innerHTML;
 			// removes scene text from container (div id '"maxPointsScene" + i')
 			document.getElementById("maxPointsScene" + i).innerHTML = "";
 		}
@@ -35,12 +33,26 @@ function appendMaxPointsText(placeId) {
 }
 
 /**
- * toggles theme from default to reversi and back
-*/
-function toggleTheme() {
-      document.getElementById("work").classList.toggle("light");
-      document.getElementById("work").classList.toggle("reversi");
-    }
+ * 
+ * 
+ */
+function destroyMineta(nextMinetaSceneIndex, nextPartClass, nextShinSceneIndex){
+	let minetaScenes = document.getElementsByClassName("minetaScene");
+	for (i = nextMinetaSceneIndex; i < minetaScenes.length; i++) {
+		minetaScenes[i].classList.toggle("unchosen");
+	}
+	let shinsouScenes = document.getElementsByClassName("shinsouScene");
+	for (i = nextShinSceneIndex; i < shinsouScenes.length; i++) {
+		shinsouScenes[i].classList.toggle("unchosen")
+	}
+	
+	// appends shinsou's introduction text to the given shinsouIntroduction div
+	document.getElementsByClassName(nextPartClass)[0].getElementsByClassName("shinsouIntroduction")[0].classList.toggle('unchosen');
+	document.getElementsByClassName(nextPartClass)[0].getElementsByClassName("shinsouIntroduction")[0].innerHTML += document.getElementById("introduction0").innerHTML;
+	// removes scene text from container
+	document.getElementById("introduction0").innerHTML = "";
+	minetaGone = true;
+}
 
 /** 
 * adds points to a given student's total.
@@ -75,18 +87,40 @@ function progress(choiceId, numChosen) {
 	  	}
 	}
 	
-	// reveals text related to the choice made
-	document.getElementById(choiceId + "-" + numChosen).classList.toggle("hidden");
+	let choiceText = document.getElementsByClassName(choiceId + "-" + numChosen);
 	
-	// reveals text regardless of choice, different text depending on where in the story the reader is
+	// reveals text related to the choice made
+	for (i = 0; i < choiceText.length; i++) {
+		choiceText[i].classList.toggle("unchosen");
+	}
+	
+	// reveal text regardless of choice, different text depending on where in the story the reader is
+	
+	// chooses part and appends any max points text (if necessary)
   	switch(choiceId) {
     	case "choice1":
-      		document.getElementById('end').classList.toggle("hidden");
-      		appendMaxPointsText("part1MaxPointsScenes");
+			nextPartClass = "part2";
+      		break;
+      	case "choice2":
+			nextPartClass = "part3";
+      		break;
+      	case "choice3":
+			nextPartClass = "end";
+			expelledArray = chooseExpellees();
+			for (const expulsionScene in expelledArray) {
+				document.getElementById("expulsion" + expelledArray[expulsionScene]).classList.toggle("unchosen");
+			}
       		break;
     	default:
       		break;
     }
+    
+    appendMaxPointsText(nextPartClass);
+    // toggles hidden in given part
+    let partElements = document.getElementsByClassName(nextPartClass);
+    for (i = 0; i < partElements.length; i++) {
+		partElements[i].classList.toggle("hidden");
+	}
 }
 
 /**
@@ -95,9 +129,19 @@ function progress(choiceId, numChosen) {
 function revealAll() {
 	var allHidden = document.querySelectorAll(".hidden"); // array of all elements with "hidden" class
 	
-	// iterates through array, revealing all
+	// iterates through array, revealing all hidden
 	for (i = 0; i < allHidden.length; i++) {
-		allHidden[i].classList.toggle("hidden")
+		allHidden[i].classList.toggle("hidden");
+	}
+	
+	var allUnchosen = document.querySelectorAll(".unchosen"); // array of all elements with "unchosen" class
+	
+	// iterates through array, revealing all unchosen options
+	for (i = 0; i < allUnchosen.length; i++) {
+		if (allUnchosen[i].classList.contains("shinsouIntroduction")) {
+			continue;
+		}
+		allUnchosen[i].classList.toggle("unchosen");
 	}
 	
 	var allButtons = document.querySelectorAll("button"); // array of all buttons
@@ -112,12 +156,6 @@ function revealAll() {
 		}
 		if (!(allButtons[i].classList.contains("inert"))) {
 			allButtons[i].classList.toggle("inert");
-		}
-	}
-	
-	for (let i = 0; i < MAX_POINTS_TEXT.length; i++) {
-		if (!maxPointsSceneComplete[i]) {
-			document.getElementById("endMaxPointsScenes").innerHTML += MAX_POINTS_TEXT[i];
 		}
 	}
 }
