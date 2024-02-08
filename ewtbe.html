@@ -46,7 +46,6 @@
   		
   		<p>Should he do it?</p>
   		
-  		<hr class="hidden" />
   	
     	<button class="choice2 button1" onclick="destroyMineta(0,'part3',0);addPoints(18,1);progress('choice2', 1)">YES!!!</button>
     
@@ -79,13 +78,14 @@
     	<hr class="hidden" />
     	
     	<div class="minetaScene 0">
+    		<p class="hidden">[SHOWS IF MINETA IS PRESENT]</p>
+    	
     		<p>Mineta whines about something or other</p>
     		
     		<p>Yaoyorozu is so done with it she wants to kick him out the window.</p>
     		
     		<p>Does she?</p>
     		
-    		<hr class="hidden" />
   	
 	    	<button class="choice3 button1" onclick="destroyMineta(1,'end',1);addPoints(19,1);progress('choice3', 1)">With prejudice</button>
 	    
@@ -105,9 +105,10 @@
     	<hr class="hidden" />
     	
     	<div class="shinsouScene unchosen 0">
+    		<p class="hidden">[SHOWS IF SHINSOU IS PRESENT]</p>
+    	
     		<p>Everyone cheers so much because Shinsou is so cool.</p>
     		
-    		<hr class="hidden" />
 	    
 	    	<button class="choice3 button3" onclick="progress('choice3', 3)">Continue</button>
     	</div>
@@ -122,12 +123,16 @@
   		<hr class="hidden" />
   	
   		<div class="minetaScene 1">
+  			<p class="hidden">[SHOWS IF MINETA IS PRESENT]</p>
+  		
   			<p>Mineta is.</p>
   		</div>
   		
   		<hr class="hidden" />
   		
   		<div class="shinsouScene unchosen 1">
+  			<p class="hidden">[SHOWS IF SHINSOU IS PRESENT]</p>
+  		
   			<p>Mineta isn't.</p>
   		</div>
   		
