@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.outline-left {
+  border-left:1px solid black;
+}
+.outline-right {
+  border-right:1px solid black;
+}
+.outline-bottom {
+  border-bottom:1px solid black;
+}
+.outline-top {
+  border-top:1px solid black;
+}
+
+.full-outline {
+  border:1px solid black;
+}
+
+ .mic-buttons td {
+  border:1px solid black;
+  padding-left:4px;
+  font-family: monospace;
+}
+
+.mic-segment-grey {
+  background-color: grey;
+}
+.mic-segment-dark-grey {
+  background-color: #242424;
+}
+
+.mic-left {
+  width:75%;
+}
+
+table {
+  table-layout:fixed;
+}
+tr, td {
+  padding:0px;
+}
+
+.mic-container {
+   height:min(250px,62.5vw);
+   width:min(400px, 100vw);
+   border-collapse: collapse; 
+}
+
+.mic-top {
+  height:20%;
+}
+
+.tt-display {
+  width:min(80%, 60vw);
+  height:60%;
+  border:1px solid green;
+  float:right;
+  margin:0px;
+  font-size:30px;
+  text-align:center;
+  font-family: 'Courier New', monospace;
+  color:green;
+  background-color:#66ff00;
+  box-shadow:0px 0px 10px 10px rgba(102, 255, 0, 0.5);
+  
+}
+
+
+.mic-window {
+  height:min(150px,37.5vw);
+  width:75%;
+  margin-left:7.5%;
+  background-color: #141414;
+}
+
+.mic-reflection {
+  height:min(150px,37.5vw);
+  width:100%;
+  opacity: 5%;
+}
+
+.mic-handle {
+  height:min(160px,40vw);
+  width:10%;
+  margin-left:1.5%;
+  position:relative;
+  bottom:min(-6px,-0.5vw);
+}
+
+.mic-control-panel {
+  height:min(140px,35vw);
+  width:70%;
+  margin:auto;
+}
+
+.mic-timer-display {
+  height:min(20px,5vw);
+  width:70%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:min(8px,2vw);
+  margin-bottom:min(8px,2vw);
+  font-family: 'Courier New', monospace;
+  background-color:green;
+  color:#66ff00;
+  padding-left:2px;
+}
+
+.mic-buttons {
+  width:70%;
+  height:min(80px,20vw);
+  margin-left:auto;
+  margin-right:auto;
+  border-collapse: collapse; 
+}
+
+.ib {
+  display:inline-block;
+}
+
+.mic-sounds audio {
+  position:absolute;
+  opacity:0;
+}
+
+
+ audio::-webkit-media-controls-play-button {
+      height: 100px;
+    }
+
+
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-volume-slider-container,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button,
+audio::-webkit-media-controls-fullscreen-button,
+audio::-webkit-media-controls-rewind-button,
+audio::-webkit-media-controls-return-to-realtime-button,
+audio::-webkit-media-controls-toggle-closed-captions-button {
+	pointer-events: none;
+}
+
+
+</style>
+</head>
+<body>
+
+<table class="full-outline mic-container">
+	<tr class="outline-bottom mic-top">
+		<td class="mic-segment-dark-grey mic-left"><p class="tt-display">TIME TRAVEL</p></td>
+		<td class="mic-segment-dark-grey"></td>
+	</tr>
+	<tr>
+		<td class="mic-segment-grey outline-right">
+			<div class="full-outline mic-window ib">
+				<img class="mic-reflection" src="https://i.imgur.com/zaN1CXG.png" />
+			</div>
+			<div class="full-outline mic-handle ib"></div>
+		</td>
+		<td class="mic-segment-grey">
+			<div class="mic-control-panel full-outline">
+				<div class="mic-timer-display full-outline">BOO</div>
+				<table class="mic-buttons full-outline">
+					<div class="mic-sounds">
+						<audio class="buttonsound6" controls="controls" controlslist="nodownload noplaybackrate" crossorigin="anonymous" preload="metadata"><source src="https://raw.githubusercontent.com/Quexiclact/quexiclact.github.io/master/microwave%20beeps/microwave-end-sound-98680.mp3"></audio>
+					</div>
+					<tr>
+						<td>1 <div class="mic-sounds"><audio class="buttonsound1" controls="controls" controlslist="nodownload noplaybackrate" crossorigin="anonymous" preload="metadata"><source src="https://raw.githubusercontent.com/Quexiclact/quexiclact.github.io/master/microwave%20beeps/beep-104060.mp3"></audio></div>
+</td>
+						<td>2 <div class="mic-sounds">
+						<audio class="buttonsound5" controls="controls" controlslist="nodownload noplaybackrate" crossorigin="anonymous" preload="metadata"><source src="https://raw.githubusercontent.com/Quexiclact/quexiclact.github.io/master/microwave%20beeps/microwave-button-82493.mp3"></audio>
+</div></td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>4 <div class="mic-sounds">
+						<audio class="buttonsound4" controls="controls" controlslist="nodownload noplaybackrate" crossorigin="anonymous" preload="metadata"><source src="https://raw.githubusercontent.com/Quexiclact/quexiclact.github.io/master/microwave%20beeps/microwave-beep-44673.mp3"></audio>
+</div></td>
+						<td>5 <div class="mic-sounds">
+						<audio class="buttonsound2"  controls="controls" controlslist="nodownload noplaybackrate" crossorigin="anonymous" preload="metadata"><source src="https://raw.githubusercontent.com/Quexiclact/quexiclact.github.io/master/microwave%20beeps/beep-beep-6151.mp3"></audio></div></td>
+						<td>6</td>
+					</tr>
+					<tr>
+						<td>7 <div class="mic-sounds">
+						<audio class="buttonsound3" controls="controls" controlslist="nodownload noplaybackrate" crossorigin="anonymous" preload="metadata"><source src="https://raw.githubusercontent.com/Quexiclact/quexiclact.github.io/master/microwave%20beeps/microbeep-86927.mp3"></audio>
+</div></td>
+						<td>8</td>
+						<td>9</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>0</td>
+						<td></td>
+					</tr>
+
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>
+
+</body>
